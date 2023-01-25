@@ -20,9 +20,12 @@ import com.pigihi.entity.ProductCategoryEntity;
 import com.pigihi.entity.ProductEntity;
 import com.pigihi.model.ProductModel;
 import com.pigihi.model.UpdateStatusModel;
-import com.pigihi.service.QueryServiceInterface;
+import com.pigihi.service.interfaces.ProductServiceInterface;
+import com.pigihi.service.interfaces.QueryServiceInterface;
 
 /**
+ * Controller class for handling product API requests
+ * 
  * @author Ashish Sam T George
  *
  */
@@ -34,10 +37,18 @@ public class ProductController {
 	@Autowired
 	private QueryServiceInterface productQueryService;
 	
+	@Autowired
+	private ProductServiceInterface productService;
+	
 	/**
 	 * Get information of all the products
 	 * 
 	 * @return String in JSON format
+	 * 
+	 * @see ProductEntity
+	 * 
+	 * @author Ashish Sam T George
+	 * 
 	 */
 	@GetMapping("/all")
 	public String listAllProducts() {
@@ -53,7 +64,12 @@ public class ProductController {
 	 * Get information about similar products
 	 * 
 	 * @param query
-	 * @return
+	 * @return JSON string representing details of list of products
+	 * 
+	 * @see ProductEntity
+	 * 
+	 * @author Ashish Sam T George
+	 * 
 	 */
 	@GetMapping("/similar")
 	public String listSimilarProducts(@RequestParam String query) {
@@ -67,7 +83,13 @@ public class ProductController {
 	/**
 	 * Get all the products having that pincode
 	 * 
-	 * @return String in JSON format 
+	 * @param pincode
+	 * @return JSON string
+	 * 
+	 * @see ProductEntity
+	 * 
+	 * @author Ashish Sam T George
+	 * 
 	 */
 	@GetMapping("/allByPin")
 	public String listProductsByPin(@RequestParam String pincode) {
@@ -82,8 +104,13 @@ public class ProductController {
 	/**
 	 * Get information of product based on id
 	 * 
-	 * @param id
-	 * @return String in JSON format
+	 * @param prodId
+	 * @return JSON string
+	 * 
+	 * @see ProductEntity
+	 * 
+	 * @author Ashish Sam T George
+	 * 
 	 */
 	@GetMapping("/id")
 	public String getProductById(@RequestParam String prodId) {
@@ -97,6 +124,17 @@ public class ProductController {
 		
 	}
 	
+	/**
+	 * Get information of products based on category
+	 * 
+	 * @param category
+	 * @return JSON string
+	 * 
+	 * @see ProductEntity
+	 * 
+	 * @author Ashish Sam T George
+	 * 
+	 */
 	@GetMapping("/productsbycategory")
 	public String listProductsByCategory(@RequestParam String category){
 		List<ProductEntity> productList = productQueryService.findProductsByCategory(category);
@@ -105,24 +143,34 @@ public class ProductController {
 	}
 	
 	/**
-	 * Store product details in database and returns the id
+	 * Store product details in database
 	 * 
 	 * @param productEntity
-	 * @return String in JSON format
+	 * @return JSON string representing the saved product
+	 * 
+	 * @see ProductEntity
+	 * 
+	 * @author Ashish Sam T George
+	 * 
 	 */
 	@PostMapping("/addProuct")
 	public String addProduct(@RequestBody ProductModel productModel) {
-		ProductEntity productEntity = productQueryService.addProduct(productModel);
+		ProductEntity productEntity = productService.addProduct(productModel);
 		Gson gson = new Gson();
 		String product = gson.toJson(productEntity);
 		return product;
 	}
 	
 	/**
-	 * Update product details in database and returns the id
+	 * Update product details in database
 	 * 
 	 * @param productEntity
-	 * @return String in JSON format
+	 * @return JSON string
+	 * 
+	 * @see ProductEntity
+	 * 
+	 * @author Ashish Sam T George
+	 * 
 	 */
 	@PostMapping("/updateProduct")
 	public String updateProduct(@RequestBody ProductEntity productEntity) {
@@ -132,26 +180,22 @@ public class ProductController {
 	}
 	
 	/**
-	 * 
+	 * Disable product
 	 * 
 	 * @param prodId
-	 * @return
+	 * @return JSON string
+	 * 
+	 * @author Ashish Sam T George
+	 * 
 	 */
 	@DeleteMapping("/")
 	public String deleteProduct(@RequestParam String prodId) {
-		productQueryService.deleteProduct(prodId);
+		productService.deleteProduct(prodId);
 		return "SUCCESSFULLY DELETED";
 	}
 	
-	@PostMapping("/admin/product/category")
-	public String addCategory(@RequestParam String category) {
-		ProductCategoryEntity savedCategory = productQueryService.addCategory(category);
-		Gson gson = new Gson();
-		String response = gson.toJson(savedCategory);
-		return response;
-	}
-	
 	/**
+	 * Change status of product to enabled
 	 * 
 	 * @param updateStatusModel
 	 * @return
@@ -170,6 +214,7 @@ public class ProductController {
 	}
 	
 	/**
+	 * Change status of product to disabled
 	 * 
 	 * @param updateStatusModel
 	 * @return

@@ -13,6 +13,8 @@ import com.pigihi.model.ShopStockModel;
 import lombok.Data;
 
 /**
+ * Entity class for Product
+ * 
  * @author Ashish Sam T George
  *
  */

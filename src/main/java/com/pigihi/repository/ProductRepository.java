@@ -12,6 +12,8 @@ import org.springframework.data.mongodb.repository.Query;
 import com.pigihi.entity.ProductEntity;
 
 /**
+ * Repository class for Product
+ * 
  * @author Ashish Sam T George
  *
  */

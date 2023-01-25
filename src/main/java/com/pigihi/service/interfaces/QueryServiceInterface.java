@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.pigihi.service;
+package com.pigihi.service.interfaces;
 
 import java.util.List;
 
@@ -10,6 +10,9 @@ import com.pigihi.entity.ProductEntity;
 import com.pigihi.model.ProductModel;
 
 /**
+ * Interface for product query service <br>
+ * No change in values
+ * 
  * @author Ashish Sam T George
  *
  */
@@ -25,10 +28,6 @@ public interface QueryServiceInterface {
 
 	List<ProductEntity> findProductsByCategory(String category);
 
-	ProductEntity addProduct(ProductModel productModel);
-
-	void deleteProduct(String prodId);
-
-	ProductCategoryEntity addCategory(String category);
+	ProductEntity findProductByName(String prodName);
 
 }

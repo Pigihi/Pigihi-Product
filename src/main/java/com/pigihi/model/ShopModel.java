@@ -4,6 +4,12 @@ import java.util.List;
 
 import lombok.Data;
 
+/**
+ * Model class for shop
+ * 
+ * @author Ashish Sam T George
+ *
+ */
 @Data
 public class ShopModel {
 	

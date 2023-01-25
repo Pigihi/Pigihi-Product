@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 /**
+ * Entity class for Product Category
+ * 
  * @author Ashish Sam T George
  *
  */
