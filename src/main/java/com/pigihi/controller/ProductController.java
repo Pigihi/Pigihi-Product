@@ -135,7 +135,7 @@ public class ProductController {
 	 * @author Ashish Sam T George
 	 * 
 	 */
-	@GetMapping("/productsbycategory")
+	@GetMapping("/allByCategory")
 	public String listProductsByCategory(@RequestParam String category){
 		List<ProductEntity> productList = productQueryService.findProductsByCategory(category);
 		String products = convertToJson(productList);
@@ -153,7 +153,7 @@ public class ProductController {
 	 * @author Ashish Sam T George
 	 * 
 	 */
-	@PostMapping("/addProuct")
+	@PostMapping("/add")
 	public String addProduct(@RequestBody ProductModel productModel) {
 		ProductEntity productEntity = productService.addProduct(productModel);
 		Gson gson = new Gson();
