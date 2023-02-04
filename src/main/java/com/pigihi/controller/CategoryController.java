@@ -4,8 +4,11 @@
 package com.pigihi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.pigihi.entity.ProductCategoryEntity;
@@ -18,6 +21,9 @@ import com.pigihi.service.interfaces.QueryServiceInterface;
  * @author Ashish Sam T George
  *
  */
+@RestController
+@RequestMapping("/category")
+@CrossOrigin("*")
 public class CategoryController {
 	
 	@Autowired
@@ -34,7 +40,7 @@ public class CategoryController {
 	 * @author Ashish Sam T George
 	 * 
 	 */
-	@PostMapping("/admin/product/category")
+	@PostMapping("/add")
 	public String addCategory(@RequestParam String category) {
 		ProductCategoryEntity savedCategory = categoryService.addCategory(category);
 		Gson gson = new Gson();

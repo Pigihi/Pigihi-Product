@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.pigihi.entity.ProductEntity;
 import com.pigihi.model.ProductModel;
@@ -20,6 +21,7 @@ import com.pigihi.service.interfaces.QueryServiceInterface;
  * @author Ashish Sam T George
  *
  */
+@Service
 public class ProductService implements ProductServiceInterface {
 	
 	@Autowired

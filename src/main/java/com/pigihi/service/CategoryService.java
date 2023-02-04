@@ -4,6 +4,7 @@
 package com.pigihi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.pigihi.entity.ProductCategoryEntity;
 import com.pigihi.repository.CategoryRepository;
@@ -15,6 +16,7 @@ import com.pigihi.repository.CategoryRepository;
  * @author Ashish Sam T George
  *
  */
+@Service
 public class CategoryService {
 	
 	@Autowired
