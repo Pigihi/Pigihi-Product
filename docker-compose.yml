@@ -1,0 +1,32 @@
+version: "3.3"
+
+services:
+  product-db:
+    container_name: product-db
+    image: 'mongo'
+    restart: always
+    volumes:
+      - mongo-volume:/data/db
+      #- ./mongo-volume:/data/db
+    ports:
+      - 27021:27017
+
+  product-service:
+    container_name: product-service-v0.1
+    image: product-service-v0.1-image
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 8094:8080
+    restart: always
+    depends_on:
+      - product-db
+
+volumes:
+  mongo-volume:
+
+networks:
+  default:
+    external:
+      name: pigihi-network
