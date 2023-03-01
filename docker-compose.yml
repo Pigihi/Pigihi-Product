@@ -18,7 +18,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - 8094:8080
+      - 8094:8094
     restart: always
     depends_on:
       - product-db
