@@ -1,16 +1,5 @@
-eureka_hostname: service-registry
-
-service_hostname: product-service
-
-mongodb_hostname: product-db
-
-# Production environment
-#mongodb_database_name: productDB
-
-# Development environment
-mongodb_database_name: devProductDB
-
 # Test environment
+#mongodb_hostname: product-db
 #mongodb_database_name: testProductDB
 
 # Eureka properties
@@ -40,3 +29,5 @@ spring:
 # Import configuration from settings.yml
   config:
     import: optional:settings.yml
+  profiles:
+    active: standalone
